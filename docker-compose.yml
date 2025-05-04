@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  user-service:
+    build: .
+    ports:
+      - '3000:3000'
+    environment:
+      - MONGODB_URI=mongodb://root:Mu8WPKOBWsEACtZdI8uWoFZa@172.21.238.30:27017
+      - JWT_SECRET=JWT_SECRET=3c738266bdf223c5308086542611dd7028a627f1a5caf9388dbed04c6590c567
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
